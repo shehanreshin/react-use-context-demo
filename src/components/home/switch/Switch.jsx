@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../../App";
 
 export default function Switch() {
-  const [isDark, toggleTheme] = useState(false);
+  const [theme, setTheme] = useContext(ThemeContext);
+  const handleToggle = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
   return (
     <>
       <div className="d-flex align-items-center justify-content-center">
         <div className="me-2">Dark</div>
-        <div class="form-check form-switch">
+        <div className="form-check form-switch">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="checkbox"
             role="switch"
             id="flexSwitchCheckChecked"
-            checked
-            onClick="toggleTheme(true)"
+            defaultChecked={false}
+            onChange={handleToggle}
           />
         </div>
         <div>Light</div>
